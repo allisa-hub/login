@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DIRECTORY</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.3.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.3.1/mapbox-gl-directions.css" type="text/css">
+<style>
+    .map-overlay {
+        font:
+            12px/20px 'Helvetica Neue',
+            Arial,
+            Helvetica,
+            sans-serif;
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .open-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  float: right;
+  bottom: 23px;
+  right: 28px;
+  width: 100px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  float: right;
+  right: 15px;
+  border:#f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding-top: 45px;
+}
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+
+</style>
+
+
+<div id="map"></div>
+
+<div class="map-overlay top" style="float: right;">
+          <div id="map"></div>
+          <div class="map-overlay top">
+          <div class="map-overlay-inner">
+          </div>
+      </div>
+      </div>
+      </div>
+</div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWxsaXNhIiwiYSI6ImNsd2FhMWJxbDBidWkycW04ZGo3NnhtYnoifQ.VLuJ6DXx2ImK8aFQg3tk3A';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: [124.6833306, 11.2999988], // starting position [lng, lat]
+        zoom: 15.1, // starting zoom
+        pitch: 62, // starting pitch
+        bearing: -20 // starting bearing
+    });
+
+    map.on('style.load', () => {
+        map.addSource('line', {
+            type: 'geojson',
+            lineMetrics: true,
+            data: {
+                type: 'LineString',
+                coordinates: [
+                    [683729.61145914, 1249679.7335814],
+                    [683729.61145914, 1249679.7335814]
+                ]
+            }
+        });
+
+        map.addLayer({
+            id: 'line',
+            source: 'line',
+            type: 'line',
+            paint: {
+                'line-width': 12,
+                // The `*-emissive-strength` properties control the intensity of light emitted on the source features.
+                // To enhance the visibility of a line in darker light presets, increase the value of `line-emissive-strength`.
+                'line-emissive-strength': 0.8,
+                'line-gradient': [
+                    'interpolate',
+                    ['linear'],
+                    ['line-progress'],
+                    0,
+                    'red',
+                    1,
+                    'blue'
+                ]
+            }
+        });
+    });
+
+
+    map.addControl(
+    new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+    }),
+        'top-right'
+    );
+    
+    // Add geolocate control to the map.
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+</script>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Sidebar Menu</title>
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
+   </head>
+   <body>
+      <button class="open-button" onclick="openForm()">
+   <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:5px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+
+</button>
+
+<div class="form-popup" id="myForm">
+  <form action="index.html" class="form-container">
+    <button type="submit" class="btn">Logout</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+   <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+
+   <nav id="sidebar">             
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+<div class="dropdown">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-content">
+                <a href="hotel.html">Hotels</a>
+                <a href="Restaurants.html">Restaurants</a>
+                <a href="resort.html">Resort</a>
+                <a href="school.html">Schools</a>
+                <a href="church.html">Church</a>
+            </div>
+          </div>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+
+      <div style="text-align:top; padding-left:20%; "></div>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+   </div>
+
+        
+   </body>
+</html>
+
+</body>
+</html>

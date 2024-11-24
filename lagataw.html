@@ -1,0 +1,128 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LAGATAW</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.3.1/mapbox-gl-directions.css" type="text/css">
+
+<div id="map"></div>
+
+<div class="map-overlay top" style="float: right;">
+          <div id="map"></div>
+          <div class="map-overlay top">
+          <div class="map-overlay-inner">
+          </div>
+      </div>
+      </div>
+      </div>
+</div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWxsaXNhIiwiYSI6ImNsd2FhMWJxbDBidWkycW04ZGo3NnhtYnoifQ.VLuJ6DXx2ImK8aFQg3tk3A';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: [124.6833306, 11.2999988], // starting position [lng, lat]
+        zoom: 15.1, // starting zoom
+        pitch: 62, // starting pitch
+        bearing: -20 // starting bearing
+    });
+
+
+    map.addControl(
+    new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+    }),
+        'top-right'
+    );
+    
+    
+</script>
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+         <nav id="sidebar">
+            <div class="title">
+               MENU
+            </div>
+            <ul class="list-items">
+               <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+               <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+               <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+               <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+               <li><a href="logout.html"style="font-size:10px; font-weight:bold; padding-top:0%;">Logout</a></li>
+       
+        <div style="text-align:top; padding-left:95%;">
+        <p  style="font-size:10px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+      </p>
+    </div>
+    <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+            <div class="categories" style=" margin-left: 45px;">
+               <button>Hotel</button><button>Restaurants</button><button>Restaurants</button><button>Resorts</button>
+
+         </div>
+         </nav>
+         
+      </div>
+      <div style="text-align:center; padding:15%;">
+      <p  style="font-size:50px; font-weight:bold;">
+       Hello  <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+       :)
+      </p>
+      <a href="logout.html">Logout</a>
+    </div>
+
+        
+   </body>
+</html>
+
+</body>
+</html>

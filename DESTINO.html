@@ -1,0 +1,172 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <title>Resort</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+            <style>/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  float: right;
+  bottom: 23px;
+  right: 28px;
+  width: 100px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  float: right;
+  right: 15px;
+  border:#f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding-top: 45px;
+}
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<button class="open-button" onclick="openForm()">
+   <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:5px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+
+</button>
+
+<div class="form-popup" id="myForm">
+  <form action="index.html" class="form-container">
+    <button type="submit" class="btn">Logout</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+   <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+
+   <nav id="sidebar">             
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+<div class="dropdown">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-content">
+                <a href="hotel.html">Hotels</a>
+                <a href="Restaurants.html">Restaurants</a>
+                <a href="resort.html">Resort</a>
+                <a href="school.html">Schools</a>
+                <a href="church.html">Church</a>
+            </div>
+          </div>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+
+      <div style="text-align:top; padding-left:20%; "></div>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+   </div>
+
+<div class="topnav" class="button" style="text-align: center; font-size:30px; background-color:lightblue; color:black;">
+  <a class="active">
+    <p>DESTINO RESORT
+</p>
+  </div>
+    <div class="topnav1" class="button" style=" font-size:30px; color:black;">
+  <a class="active">
+
+<div id="map"></div>
+
+<div class="map-overlay top" style="float: right;">
+          <div id="map"></div>
+          <div class="map-overlay top">
+          <div class="map-overlay-inner">
+          </div>
+      </div>
+      </div>
+      </div>
+</div>
+    
+    <div class="img">
+  <img src="img.jpg" alt="carigara" width="50%" height="300px" font-size="50px"></img>
+
+    <iframe src="resort/DESTINOmap.html" height="300px" width="50%" style="float: right;" title="Hotel baudilio"></iframe>
+    <h2>MEALS:</h2>
+    <p>Breakfast, Lunch, Dinner, Brunch, Late Night, Drinks</p> <br>ss
+
+    <h2>CUISINES:</h2>
+    <p>Filipino, Bar, Cafe, Barbecue, Asian, Pub</p> <br>
+
+    <h2>Location:</h2>
+    <p>BRGY.BAYBAY , CARIGARA LEYTE</p><br>
+
+    <h2>FEATURES:</h2>
+    <p>Delivery, Takeout, Reservations, Outdoor Seating, Seating, Street Parking, Television, Serves Alcohol, Wine and Beer, Digital Payments, Cash Only, Sports bars, Gift Cards Available</p><br>
+
+    <h2>Facebok Page:</h2>
+    <link rel="stylesheet" type="text/css" href="https://www.facebook.com/p/Kusina-Estela-100065108516455/">
+    <br>
+    <a href="https://www.facebook.com/p/Kusina-Estela-100065108516455/" style="font-size: 20px;">https://www.facebook.com/p/Kusina-Estela-100065108516455/
+        <br>
+
+    <form action="OURLADY.html">
+    <button type="submit" class="btn" style="float: right; margin-top: 35px; font-size: 15px;">next</button>
+  </form>
+    
+
+</body>
+</html>

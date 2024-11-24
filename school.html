@@ -1,0 +1,964 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+          <style>/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  border: none;     
+  font-size: 30px;
+  cursor: pointer;
+  opacity: 0.8;
+  float: right;
+  bottom: 23px;
+  right: 28px;
+  width: 100px;
+  font-size: 30px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  float: right;
+  right: 15px;
+  border:#f1f1f1;
+  z-index: 9;
+
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding-top: 45px;
+}
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<button class="open-button" onclick="openForm()">
+   <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:20px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+
+</button>
+
+<div class="form-popup" id="myForm">
+  <form action="index.html" class="form-container">
+    <button type="submit" class="btn">Logout</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+      <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+         <nav id="sidebar">
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+<div class="dropdown">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-content">
+                <a href="hotel.html">Hotels</a>
+                <a href="Restaurants.html">Restaurants</a>
+                <a href="resort.html">Resort</a>
+                <a href="school.html">Schools</a>
+                <a href="church.html">Church</a>
+            </div>
+          </div>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+
+       <div style="text-align:top; padding-left:20%; ">    
+    </div>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+      </div>
+       <div class="topnav" class="button" style="text-align: center; font-size:30px; background-color:lightblue; color:black;">
+  <a class="active">
+    <p>LIST OF SCHOOLS</p>
+  </div>
+    <div class="topnav1" class="button" style=" font-size:30px; color:black;">
+  <a class="active">
+    <button onclick="togglePopup()" style="font-size: 20px;">ELEMENTARY SCHOOL</button>
+  <style>
+        .popup {
+            display: none;
+            position: fixed;
+            left: 70%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-size:30px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            font-size:50px;
+        }
+        .show { display: block; }
+    </style>
+</head>
+<body>
+<div class="hotels" style="margin-top: 20px; padding-left: 300px; font-size:50px;"style="display: flex; background-image: url(categories/hotelbtn.jpg;)">
+
+    <button onclick="togglePopup()" style="font-size: 20px;">C.A.T.A. MEM. CENTRAL SCHOOL </button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+
+    <h2>C.A.T.A. MEM. CENTRAL SCHOOL </h2>
+
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p> <br>
+        <p>Location: BRGY. SAWANG CARIGARA, LEYTE</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+
+<button onclick="togglePopup()" style="font-size: 20px;">BALILIT ELEMENTARY SCHOOL 
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+
+    <h2>BALILIT ELEMENTARY SCHOOL 
+</h2>
+
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p> <br>
+    <p>Location: BRGY. BALILIT, CARIGARA LEYTE</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">BAR SUR ELEMENTARY SCHOOL
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>BAR SUR ELEMENTARY SCHOOL
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. BARUGOHAY SUR, CARIGARA LEYTE</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CADIGAHUB ELEM. SCHOOL 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CADIGAHUB ELEM. SCHOOL 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. CANDIGAHUB, CARIGARA LEYTE
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CAMANSI ELEMENTARY SCHOOL 
+
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CAMANSI ELEMENTARY SCHOOL 
+
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. CAMANSI, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CANFABI ELEMENTARY SCHOOL 
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CANFABI ELEMENTARY SCHOOL 
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. CANFABI, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">MACALPI ELEMENTARY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>MACALPI ELEMENTARY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. MACALPI, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">SOGOD ELEMENTARY SCHOOL 
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>SOGOD ELEMENTARY SCHOOL 
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. LOWER SOGOD, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">STA. FE ELEMENTARY SCHOOL 
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>STA. FE ELEMENTARY SCHOOL 
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. STA.FE CARIGARA, LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">TIGBAO ELEMENTARY SCHOOL 
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>TIGBAO ELEMENTARY SCHOOL 
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. TIGBAO, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">TINAGUBAN ELEM. SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>TINAGUBAN ELEM. SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. TINAGUBAN, CARIGARA LEYTE
+
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">BAR NORTE ELEM SCHOOL
+
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>BAR NORTE ELEM SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY.BARUGOHAY NORTE, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">BINIBIHAN ELEMENTERY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>BINIBIHAN ELEMENTERY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. BINIBIHAN, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script><br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CARIGARA II CENTRAL SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CARIGARA II CENTRAL SCHOOL
+
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. JUGABAN, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">COGON ELEMENTARY SCHOOL
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>COGON ELEMENTARY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. COGON, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">GUINDAPUNAN ELEM SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>GUINDAPUNAN ELEM SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. GUINDAPUNAN EAST ,CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">PANGNA ELEMENTARY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>PANGNA ELEMENTARY SCHOOL
+
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. PANGNA, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">PARAG-UM ELEMENTARY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>PARAG-UM ELEMENTARY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. PARAG-UM, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">SAGKAHAN ELEMENTARY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>SAGKAHAN ELEMENTARY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. SAGKAHAN, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">TAGAK ELEMENTARY SCHOOL
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>TAGAK ELEMENTARY SCHOOL
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. TAGAK, CARIGARA LEYTE
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CAGHALO EMENTARY SCHOOL
+
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CAGHALO EMENTARY SCHOOL
+
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. CAGHALO, CARIGARA LEYTE
+
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+<br>
+
+<button onclick="togglePopup()" style="font-size: 20px;">CANLAMPAY ELEMENTARY SCHOOL
+
+
+ 
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CANLAMPAY ELEMENTARY SCHOOL
+
+
+ 
+
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. CANLAMPAY, CARIGARA LEYTE
+
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+
+
+
+<br>
+  </div>
+  <div class="topnav" class="button" style="text-align: center; font-size:30px; background-color:lightblue; color:black;">
+  <a class="active">
+    <p>SECONDARY SCHOOL</p>
+<button onclick="togglePopup()" style="font-size: 20px;">CARIGARA NATIONAL HIGH SCHOOL
+
+</button>
+
+<div id="overlay" class="overlay" onclick="togglePopup()"></div>
+
+<div id="popup" class="popup" style="height: 100%;
+width: 60%;">
+    <h2>CARIGARA NATIONAL HIGH SCHOOL
+</h2>
+    <iframe src="hotels/baudillio.html" height="200" width="800" title="Hotel baudilio"></iframe>
+    <p>This is some content of the hotel.</p><br>
+    <p>Location: BRGY. PONONG, CARIGARA LEYTE
+
+
+
+</p><br>
+        <a href="https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0" style="font-size: 20px;">https://www.bing.com/images/search?view=detailV2&ccid=5HXCI70m&id=F99EABBCC194602BD9B584036768DE3A7089CFEE&thid=OIP.5HXCI70mNf6nmFLtaua33wHaE7&mediaurl=https%3a%2f%2fwallpaperaccess.com%2ffull%2f3692629.jpg&exph=1730&expw=2600&q=restaurants+backgroud+img&simid=608031949645358771&FORM=IRPRST&ck=639DCA5604C2FBB54AA5C898080AB469&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0
+
+        </a>
+    <button onclick="togglePopup()">Close</button>
+    <button onclick="togglePopup()" style="float: right; margin-top: 35px;">next</button>
+</div>
+
+<script>
+    function togglePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+</script>
+
+  
+</body>
+</html>
+
+

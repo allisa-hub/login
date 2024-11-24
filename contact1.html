@@ -1,0 +1,223 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+         <nav id="sidebar">
+            <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:20px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+        <br><a href="contact.html" style="font-size:15px; font-weight:bold;">Profile</a>
+
+      </p>
+      
+
+</div>      
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Profile</a></li>
+
+       <div style="text-align:top; padding-left:20%; ">    
+    </div>
+               <li><a href="logout.html"style="font-size:15px; font-weight:bold; padding-top:0%;"><i class="fas fa-Logout"></i>Logout</a></li>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+      </div>
+        
+   </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shorcut icon" type="x-icon" href="assets/imgs/logo.jpg">
+    <title>Graduate Poartal</title>
+    <style>
+        .user {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin-right: 15%;
+        }
+        .user .img {
+            border-radius: 50%;
+            width: 40px; /* Adjust as needed */
+            height: 40px; /* Adjust as needed */
+            margin-left: 10px; /* Space between text and image */
+        }
+        .user h1 {
+            margin: 0;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+        .profile-image {
+            margin-top: 3%;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .profile-image img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        .profile-form {
+            flex: 2;
+            margin-left: 20px;
+        }
+        .profile-form form {
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-form input, .profile-form button {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .profile-form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .profile-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 300px; /*change size dropdown menu*/
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent #fff transparent;
+        }
+    </style>
+</head>
+<body>
+     <div class="main">
+            <center>
+            <p style="margin-left:3%; background-color:whitesmoke; text-align:cnter; font-size:40px">PROFILE</p>
+            </center>
+            <center>
+                <div class="profile-image">
+                    <img src="<?html echo htmlspecialchars($users['photo']); ?>" alt="Profile Picture">
+                </div>
+            </center>
+            <div class="profile-container">
+                
+                <div class="profile-form">
+                    <form method="POST" action="admin_information_technology_update_profile.php" enctype="multipart/form-data">
+                        <label >Username</label>
+                        <input type="text" name="username" value="<?html echo htmlspecialchars($username); ?>" readonly>
+                        <label >Fullname</label>
+                        <input type="text" name="fullname" value="<?html echo htmlspecialchars($user['fullname']); ?>" required>
+                        <label >Gmail</label>
+                        <input type="email" name="gmail" value="<?html echo htmlspecialchars($user['gmail']); ?>" required>
+                        <label >Phone</label>
+                        <input type="text" name="phone" value="<?html echo htmlspecialchars($user['phone']); ?>" required>
+                        <label >Profile Picture</label>
+                        <input type="file" name="photo">
+                        <button type="submit">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- =========== Scripts ========= -->
+    <script src="script.js"></script>
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js'></script>
+
+    <!-- submenu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const user = document.querySelector('.user');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    user.addEventListener('click', function() {
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!user.contains(event.target)) {
+            dropdownMenu.style.display = 'none';
+        }
+    });
+});
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,319 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"margi",
+				"margin-top"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"li",
+				"link"
+			],
+			[
+				"b",
+				"br"
+			],
+			[
+				"align",
+				"align-items"
+			],
+			[
+				"bt",
+				"button"
+			],
+			[
+				"ba",
+				"background-image"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"fo",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Pamila A/Documents/login2/contact1.html",
+		"/C/Users/Pamila A/Documents/login2/ZASARU FOODHAUS.html",
+		"/C/Users/Pamila A/Documents/login2/RAQ FARM CORPORATION (FOOD GARDEN).html",
+		"/C/Users/Pamila A/Documents/login2/MARIBETH'SRESORT.html",
+		"/C/Users/Pamila A/Documents/login2/K-HOUSE GRILL AND RESTOBAR.html",
+		"/C/Users/Pamila A/Documents/login2/KUSINA ESTELA FOOD & BEVERAGE HOUSE.html",
+		"/C/Users/Pamila A/Documents/login2/BELLARESORT.html",
+		"/C/Users/Pamila A/Documents/login2/BREW'S KO COFFEE SHOP.html",
+		"/C/Users/Pamila A/Documents/login2/CJ'S GRILL HOUSE.html",
+		"/C/Users/Pamila A/Documents/login2/CAKEART CAFE & LOUNGE BAR.html",
+		"/C/Users/Pamila A/Documents/login2/EL GARAHE BAR AND GRILL.html",
+		"/C/Users/Pamila A/Documents/login2/devilla.html",
+		"/C/Users/Pamila A/Documents/login2/homepage.html",
+		"/C/Users/Pamila A/Documents/login2/index.html",
+		"/C/xampp/htdocs/login2/Restaurants.php",
+		"/C/xampp/htdocs/login2/categories.php",
+		"/C/xampp/htdocs/login2/NEW TOWN KITCHEN.php",
+		"/C/xampp/htdocs/login2/PAHAYAHAYRESORT.php",
+		"/C/xampp/htdocs/login2/resort.php",
+		"/C/xampp/htdocs/login2/MARIBETH'SRESORT.php",
+		"/C/xampp/htdocs/login2/BELLARESORT.php",
+		"/C/xampp/htdocs/login2/OURLADY.php",
+		"/C/xampp/htdocs/login2/jude.php",
+		"/C/xampp/htdocs/login2/resort/BELLARESORTmap.php",
+		"/C/xampp/htdocs/login2/resort/DESTINOmap.php",
+		"/C/xampp/htdocs/login2/resort/judemap.php",
+		"/C/xampp/htdocs/login2/resort/PAHAYAHAYRESORTmap.php",
+		"/C/xampp/htdocs/login2/resort/MARIBETH'SRESORTmap.php",
+		"/C/xampp/htdocs/login2/resort/OURLADYmap.php",
+		"/C/xampp/htdocs/login2/restaurants/CJ'S GRILL HOUSEmap.php",
+		"/C/xampp/htdocs/login2/CJ'S GRILL HOUSE.php",
+		"/C/xampp/htdocs/login2/KUSINA ESTELA FOOD & BEVERAGE HOUSE.php",
+		"/C/xampp/htdocs/login2/DESTINO.php",
+		"/C/xampp/htdocs/login2/ZASARU FOODHAUS.php",
+		"/C/xampp/htdocs/login2/RAQ FARM CORPORATION (FOOD GARDEN).php",
+		"/C/xampp/htdocs/login2/EL GARAHE BAR AND GRILL.php",
+		"/C/xampp/htdocs/login2/K-HOUSE GRILL AND RESTOBAR.php",
+		"/C/xampp/htdocs/login2/CAKEART CAFE & LOUNGE BAR.php",
+		"/C/xampp/htdocs/login2/BREW'S KO COFFEE SHOP.php",
+		"/C/xampp/htdocs/login2/restaurants/BREW'S KO COFFEE SHOPmap.php",
+		"/C/xampp/htdocs/login2/restaurants/CAKEART CAFE & LOUNGE BARmap.php",
+		"/C/xampp/htdocs/login2/restaurants/EL GARAHE BAR AND GRILLmap.php",
+		"/C/xampp/htdocs/login2/restaurants/K-HOUSE GRILL AND RESTOBARmap.php",
+		"/C/xampp/htdocs/login2/restaurants/KUSINA ESTELA FOOD & BEVERAGE HOUSEmap.php",
+		"/C/xampp/htdocs/login2/restaurants/NEW TOWN KITCHENmap.php",
+		"/C/xampp/htdocs/login2/restaurants/ZASARU FOODHAUSmap.php",
+		"/C/xampp/htdocs/login2/restaurants/RAQ FARM CORPORATION (FOOD GARDEN)map.php",
+		"/C/xampp/htdocs/login2/AUstyle.css",
+		"/C/xampp/htdocs/login2/devilla.php",
+		"/C/xampp/htdocs/login2/contact.php",
+		"/C/xampp/htdocs/login2/homepage.php",
+		"/C/xampp/htdocs/login2/feature.php",
+		"/C/xampp/htdocs/login2/hotel.php",
+		"/C/xampp/htdocs/login2/nav.php",
+		"/C/xampp/htdocs/login2/school.php",
+		"/C/xampp/htdocs/login2/casa.php",
+		"/C/xampp/htdocs/login2/baudillio.php",
+		"/C/xampp/htdocs/login1/feature.php",
+		"/C/xampp/htdocs/login/AUstyle.css",
+		"/C/xampp/htdocs/login/feature.php",
+		"/C/xampp/htdocs/login2/hotels/devillamap.php",
+		"/C/xampp/htdocs/login2/contact.css",
+		"/C/xampp/htdocs/login2/navigation.css",
+		"/C/xampp/htdocs/login/hotels/script/hotel.php",
+		"/C/xampp/htdocs/login/restaurants/ZASARU FOODHAUS.php",
+		"/C/xampp/htdocs/login/restaurants/RAQ FARM CORPORATION (FOOD GARDEN).php",
+		"/C/xampp/htdocs/login/restaurants/EL GARAHE BAR AND GRILL.php",
+		"/C/xampp/htdocs/login/restaurants/CJ'S GRILL HOUSE.php",
+		"/C/xampp/htdocs/login/restaurants/KUSINA ESTELA FOOD & BEVERAGE HOUSE.php",
+		"/C/xampp/htdocs/login/hotel.php",
+		"/C/xampp/htdocs/login/baudillio.php",
+		"/C/xampp/htdocs/login/hotels/baudillio.php",
+		"/C/xampp/htdocs/login/hotels/devilla.php",
+		"/C/xampp/htdocs/login/hotels/casa.php",
+		"/C/xampp/htdocs/login/hotels/script/baudiliomap.php",
+		"/C/xampp/htdocs/login/school.php",
+		"/C/xampp/htdocs/login/secondary.php",
+		"/C/xampp/htdocs/login/Restaurants.php",
+		"/C/xampp/htdocs/login/tertiary.php",
+		"/C/xampp/htdocs/login/contact.php",
+		"/C/xampp/htdocs/login/categories.php",
+		"/C/xampp/htdocs/login/elementary.php",
+		"/C/xampp/htdocs/login/ATTRACTION.php",
+		"/C/xampp/htdocs/login/homepage.php",
+		"/C/xampp/htdocs/login/profile.php",
+		"/C/xampp/htdocs/login/history.php",
+		"/C/xampp/htdocs/login/resort.php",
+		"/C/xampp/htdocs/login/church.php",
+		"/C/xampp/htdocs/login/restaurants/NEW TOWN KITCHEN.php",
+		"/C/xampp/htdocs/login/CAKEART CAFE & LOUNGE BAR.php",
+		"/C/xampp/htdocs/login/restaurants/K-HOUSE GRILL AND RESTOBAR.php",
+		"/C/xampp/htdocs/login/restaurants/BREW'S KO COFFEE SHOP.php",
+		"/C/xampp/htdocs/login/church/THE CHURCH OF JESUS CHRIST OF LATTER DAY SAINTS .php",
+		"/C/xampp/htdocs/login/church/ST. FRANCIS OF ASSISI PARISH CHURCH.php",
+		"/C/xampp/htdocs/login/church/IGLESIA NI CRISTO .php",
+		"/C/xampp/htdocs/login/church/HOLY CROSS PARISH CHURCH.php",
+		"/C/xampp/htdocs/login/resort/jude.php",
+		"/C/xampp/htdocs/login/resort/OURLADY.php",
+		"/C/xampp/htdocs/login/resort/DESTINO.php",
+		"/C/xampp/htdocs/login/resort/PAHAYAHAYRESORT.php",
+		"/C/xampp/htdocs/login/resort/MARIBETH'SRESORT.php",
+		"/C/xampp/htdocs/login/resort/BELLARESORT.php",
+		"/C/xampp/htdocs/login1/tertiary,php.php",
+		"/C/xampp/htdocs/login/schools/secondary.php",
+		"/C/xampp/htdocs/login1/elementary.php",
+		"/C/xampp/htdocs/login/schools/tertiary.php",
+		"/C/xampp/htdocs/login1/hotel.php",
+		"/C/xampp/htdocs/login/PAHAYAHAYRESORT.php",
+		"/C/xampp/htdocs/login/MARIBETH'SRESORT.php",
+		"/C/xampp/htdocs/login/BELLARESORT.php",
+		"/C/xampp/htdocs/login1/hotels/casa.php",
+		"/C/xampp/htdocs/login1/homepage.php",
+		"/C/Users/Pamila A/Downloads/base-1.0.0/index.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 304.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

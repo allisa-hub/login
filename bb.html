@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LAGATAW</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link rel="stylesheet" href="navigation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<style>
+    body { 
+        margin: 0; padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+}
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; 
+    
+}
+
+.btn {
+  border:#333;
+  background-color: inherit;
+  padding: 15px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+
+}
+.topnav {
+  float: center;
+  overflow:hidden;
+  background-color:transparent;
+  text-align: center;
+  font-size: 20px;
+  padding-left: 14%;
+  position: relative;
+  display: flex;
+}
+
+.topnav a {
+  float: center;
+  color: #161515;
+  text-align: center;
+  padding-top: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: 15%;
+  border: #333;
+  position: relative;
+  display: flex;
+
+}
+
+.topnav a:hover {
+  background-color: ddd;
+  border-color: gray;
+
+}
+
+.topnav a.active {
+  background-color:transparent;
+  
+}
+</style>
+</head>
+<body>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.3.1/mapbox-gl-directions.css" type="text/css">
+
+
+<div id="map"></div>
+
+<div class="map-overlay top" style="float: right;">
+          <div id="map"></div>
+          <div class="map-overlay top">
+          <div class="map-overlay-inner">
+          </div>
+      </div>
+</div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiYWxsaXNhIiwiYSI6ImNsd2FhMWJxbDBidWkycW04ZGo3NnhtYnoifQ.VLuJ6DXx2ImK8aFQg3tk3A';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: [124.6833306, 11.2999988], // starting position [lng, lat]
+        zoom: 15.1, // starting zoom
+        pitch: 62, // starting pitch
+        bearing: -20 // starting bearing
+    });
+
+    map.addControl(
+    new MapboxDirections({
+    accessToken: mapboxgl.accessToken
+    })
+        
+    );
+</script>
+
+<div class="wrapper">
+    <input type="checkbox" id="btn" hidden>
+    <label for="btn" class="menu-btn">
+    <i class="fas fa-bars"></i>
+    <i class="fas fa-times"></i>
+    </label>
+    <nav id="sidebar">
+       <div class="title">
+          MENU
+       </div>
+       <ul class="list-items">
+          <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+          <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+          <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+          <div class="icons">
+             <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+             <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+             <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+          </div>
+       </ul>
+    </div>
+    </nav>
+<div class="topnav" class="button" style="margin-top: 20px;">
+  <a class="active">
+    <button style="width: 120px;"><a href="hotel.html"><i class="fas fa-building" style='font-size:23px'></i>Hotel</a></button>
+    <button style="width: 170px;"><a href="restuarants.html"><i class="fas fa-table" style='font-size:23px'></i>Restuarants</a></button>
+    <button style="width: 190px;"><a href="beach resort.html"><i class=" fas fa-umbrella-beach" style='font-size:23px'></i>Beach Resorts</a></button>
+    <button style="width: 150px;"><a href="delicacies.html"><i class="fas fa-cheese" style='font-size:23px'></i>Delicacies</a></button>
+  </div>
+ </body>
+</html>

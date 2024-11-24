@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+            <style>/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0.8;
+  float: right;
+  bottom: 23px;
+  right: 28px;
+  width: 100px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  float: right;
+  right: 15px;
+  border:#f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding-top: 45px;
+}
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<button class="open-button" onclick="openForm()">
+   <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:5px; font-weight:bold;">
+</button>
+
+<div class="form-popup" id="myForm">
+  <form action="index.html" class="form-container">
+    <button type="submit" class="btn">Logout</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+   <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+
+   <nav id="sidebar">             
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+          <div class="dropdown">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-content">
+                <a href="hotel.html">Hotels</a>
+                <a href="Restaurants.html">Restaurants</a>
+                <a href="resort.html">Resort</a>
+                <a href="school.html">Schools</a>
+                <a href="church.html">Church</a>
+            </div>
+          </div>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+
+      <div style="text-align:top; padding-left:20%; "></div>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+   </div>
+
+<div class="topnav" class="button" style="text-align: center; font-size:30px; background-color:lightblue; color:black;">
+  <a class="active">
+    <p>CARIGARA, LEYTE</p>
+  </div>
+
+  <div class="img">
+  <img src="logo1.jpg" alt="carigara" width="30%" height="200px" margin-left="200px"font-size="50px">
+    <img src="OIP.jpg" alt="carigara" width="30%" height="200px" margin-left="200px"font-size="50px">
+    <img src="carigara.png" alt="carigara" width="30%" height="200px" margin-left="200px"font-size="50px">
+
+  <h3 style="margin-top:50px;">PROFILE</h3>
+  
+   <p style="displayCflex;">Carigara is a 2nd class municipality in the province of Leyte. It has 49 barangays, 5 of which are in the poblacion, (Baybay, Ponong, Sawang, San Mateo and Jugaban). Established in 1571, Carigara holds the distinction of being the inaugural town founded in the expansive Eastern Visayas region. The Poblacion is located 54 kilometers away from Tacloban City, the capital of Leyte and regional center of Region VIII or Eastern Visayas. It could be reached by sea and land transportation.         
+</p>
+
+  <h3>BRIEF HISTORY</h3>
+  
+   <p style=" display:flex;">According to local legend, the town got its name from the original settler, the founder of the town, Datu Gara. People referred to the place as Kan Gara, meaning “that of Gara” or simply “Gara’s”. The historian, Jaime de Veyra, in his book Tandaya or Candaya says, that Carigara is the Tandaya or Candaya mentioned in Loarca’s “Accounts of Encomiendas”; that the name may have been originally Kan Daya, Kan Darag, or Kan Gara; that Kan Dara became Kan Gara and for phonetic convenience finally became Kalgara from which the Spaniards derived its present name CARIGARA. This is partly affirmed in the ‘Relacion de Don Miguel de Loarca’ written in 1582 which lists Carigara as the biggest, most populous and most organized town in Leyte at that period. </p>
+   
+   <p style="display:flex;">Carigara became the Residencia Capital, the hub of all Jesuit activities for Eastern Visayas. As political stability became established, Carigara became not only the spiritual but also the political center and premier port of Samar and Leyte. It once became a capital of Leyte when Don Pedro de Antonio took over as Alcalde Mayor in November 20, 1823, but three years later, the next Alcalde advocated returning to Tacloban, the plea was finally granted on February 26, 1830.</p> Carigara became the Residencia Capital, the hub of all Jesuit activities for Eastern Visayas. As political stability became established, Carigara became not only the spiritual but also the political center and premier port of Samar and Leyte. It once became a capital of Leyte when Don Pedro de Antonio took over as Alcalde Mayor in November 20, 1823, but three years later, the next Alcalde advocated returning to Tacloban, the plea was finally granted on February 26, 1830.
+
+<h3 style="font-family:initial;">SOURCE:wikipedia</h3>
+ <br>
+
+   <h3>ATTRACTIONS</h3>
+   
+   <p style=" display:flex;">Carigara may not be blessed with many beautiful scenic spots, but its history is colorful and worth showcasing. It became the set of evangelizations over 400 years ago and it once serve as capital of Leyte earlier in its history. It takes pride on its ruin, the fortress pre-Spanish white tower, the first Roman Catholic Church (Binongtoan Memorial) where Datu Gara Shrine was built beside the old stone Church ruins, Old Municipal Building that was built in the mid-19th century and once was the seat of the government of the different periods in the town’s history that now serves as the Municipal Library and Museum, Gawas an Harigi an architectural curiosity in itself because of the peculiar posts seen outside the building (literally Gawas an Harigi in local dialect) Heroes Shrine to commemorate the heroes and war veterans during the WWII. The Holy Cross Parish Church, a 144-year-old church built by Franciscans missionary to replace the old stone church that was severely damaged during the Muslim raiders. Here sits the patron of the town, the Holy Cross. The Plaza Triunfo, that was built. The Carigara Boulevard / Baywalk has its own beauty during sunset time. It became a hangout place for family and friends from dusk till evening.
+
+  <p>Colourful festivities happen during the celebration of the Town Fiesta (in honor of the Triumph of the Holy Cross) which is celebrated every 16th of July – commemorates the date of the first coming of the Spaniards dated July 16, 1569, the Kalsada ni Gara and Subiran Regatta a traditional sailing event during fiesta. Magara Festival depicts elegance and abundance of the Kalgaran-ons in commemoration of its founder Datu Gara. Street dancing, colorful costumes, props and live music add to the meaningful celebration. The annual Grand Alumni Homecoming of HCCC has now become a tourist attraction, street party, colorful float parade depicting the theme for the year’s celebration. 
+</p>
+
+  <h3>PASALUBONG</h3>
+  
+   <p style=" display:flex;">Carigara is home to sumptuous delicacies such as pastillas made from pure carabao’s milk or cow’s milk, humba, hubhob -  a local delight crafted from grated cassava, eggs, kalamay, milk, and sugar, cooked within a bagacay (bamboo pole) over charcoal, imparting a unique and flavorful taste to this traditional specialty. Carigara also offers baked delicacies like roscas, cookies (butter, cinnamon, cornstarch, coconut, and peanut). Biti is also one of the unique delicacies that the town offers. Kalamay (padak) is also one of the products of Carigara. The kalamay is cooked in the traditional way using a decade-old extracting machine with the help of a carabao, where juice is extracted from the sugarcane. Aside from these delicacies, Carigara is also known for its sundang (machete), which comes in different sizes and styles. The town is also well-known for its production of traditional hand-crafted machete or bolo- the sundang. 
+ </p>
+  </div>
+    <h3 style="font-family:initial;">SOURCE : CARIGARA COMPREHENSIVE DEVELOPMENT PLAN  2020-2025
+</h3>
+  </div>
+
+
+</body>
+</html>

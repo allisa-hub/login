@@ -1,0 +1,203 @@
+<?php
+session_start();
+include("connect.php");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="navigation.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body style="padding-bottom:242px;">
+      <div class="wrapper">
+         <input type="checkbox" id="btn" hidden>
+         <label for="btn" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         <i class="fas fa-times"></i>
+         </label>
+         <nav id="sidebar">
+            <div class="title" ><i class="fas fa-user"></i>
+
+        <p  style="font-size:20px; font-weight:bold;">
+       <?php 
+       if(isset($_SESSION['email'])){
+        $email=$_SESSION['email'];
+        $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+        while($row=mysqli_fetch_array($query)){
+            echo $row['firstName'].' '.$row['lastName'];
+        }
+       }
+       ?>
+        <br><a href="contact1.html" style="font-size:15px; font-weight:bold;">Profile</a>
+
+      </p>
+      </div>     
+    <ul class="list-items">
+       <li><a href="homepage.html"><i class="fas fa-home"></i>Home</a></li>
+       <li><a href="nav.html"><i class="fas fa-route"></i>Direction</a></li>
+       <li><a href="feature.html"><i class="fas fa-stream"></i>Features</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact us</a></li>
+       <li><a href="contact.html"><i class="fas fa-envelope"></i>Profile</a></li>
+
+       <div style="text-align:top; padding-left:20%; ">   
+  
+	   
+    </div>
+        <li><a href="logout.html"style="font-size:15px; font-weight:bold; padding-top:0%;"><i class="fas fa-Logout"></i>Logout</a></li>
+               <div class="icons">
+                  <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+                  <a href="https://www.github.com/"><i class="fab fa-github"></i></a>
+                  <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+               </div>
+            </ul>
+         </nav>
+      </div>
+	
+
+  <!-- Edit Banner Text -->
+  <div class="hero-text">
+			<p class="hero-subtitle" style="font-size: 60px;">CARIGARA TOURISM SMART TOURIST NAVIGATION SYSTEM CARIGARA, LEYTE</p>
+		</div>
+		<!-- END Banner Text -->
+	</div>
+	<main>
+		<article class="main" style="padding-top:-15px;">
+			<section class="content">
+				<!-- Edit Homepage Text -->
+				<p class="blue-text">Our <strong>Services</strong></p>
+				<p id="text">Initiating a directions request to the DirectionsService with the route() method requires passing a callback which executes upon completion of the service request. This callback will return a DirectionsResult and a DirectionsStatus code in the response.</p>
+				<!-- END Homepage Text -->
+			</section>
+			<div id="services">
+				<section class="grid-services">
+				  	<!-- Edit Services Section -->
+					<div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-direction"></i>
+							</div>
+							<div class="services-description">
+							<!-- Edit Video Section -->
+								<h3>Directions</h3>
+								<p>Accessing the Directions service is asynchronous, since the maps API needs to make a call to an external server. For that reason, you need to pass a callback method to execute upon completion of the request. This callback method should process the result(s). Note that the Directions service may return more than one possible itinerary as an array of separate routes[].</p>
+							<!-- END Video Section -->
+							</div>
+						</div>
+					</div>
+					<div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-volume-up"></i>
+							</div>
+							<div class="services-description">
+								<!-- Edit Audio Section -->
+								<h3>Geocoding</h3>
+								<p>The term geocoding generally refers to translating a human-readable address into a location on a map. The process of doing the converse, translating a location on the map into a human-readable address, is known as reverse geocoding.</p>
+								<!-- END Audio Section -->
+							</div>
+						</div>
+					</div>
+					<div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-bolt"></i>
+							</div>
+							<div class="services-description">
+								<!-- Edit Lighting Section -->
+								<h3>Maximum Zoom Imagery</h3>
+								<p>The Maps API provides map tiles at various zoom levels for map type imagery. Most roadmap imagery is available from zoom levels 0 to 18, for example. Satellite imagery varies more widely as this imagery is not generated, but directly photographed.</p>
+								<!-- END Lighting Section -->
+							</div>
+						</div>
+					</div>
+					 <div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-pencil-ruler"></i>
+							</div>
+							<div class="services-description">
+								<!-- Edit Scenic Design Section -->
+								<h3>Location</h3>
+								<p>Location Services is designed to protect your information and enable you to choose what you share. </p>
+								<!-- END Scenic Design Section -->
+							</div>
+						</div>
+					</div>
+					<div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-paint-brush"></i>
+							</div>
+							<div class="services-description">
+								<!-- Edit Creative Services Section -->
+								<h3>Search Places</h3>
+								<p>The Places API lets you search for place information using a variety of categories, including establishments, prominent points of interest, and geographic locations. You can search for places either by proximity or a text string. A Place Search returns a list of places along with summary information about each place; additional information is available via a Place Details query.</p>
+								<!-- END Creative Services Section -->
+							</div>
+						</div>
+					</div>
+					<div class="grid-group-services">
+						<div class="grid-group-services-box">
+							<div class="services-icon">
+								<i class="fas fa-ship"></i>
+							</div>
+							<div class="services-description">
+								<!-- Edit Conventions Section -->
+								<h3>Conventions</h3>
+								<p>As the onsite, preferred partner for Detroit's COBO Center, Premier provides in-depth knowledge of the facility. From exhibits, to main halt, to everything in between, we have the technology and crew to make it happen.</p>
+								<!-- END Conventions Section -->
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- END Services Section -->
+			</div>
+		</article>
+	</main>
+	<footer class="footerRow">
+		<div class="footerColumn">
+			<span id="SocialMedia">
+				<a href="https://www.facebook.com/premiereventtechnology?fref=ts" target="_blank" class="fab fa-facebook-f"></a>
+				<a href="https://twitter.com/PremierEventAV" target="_blank" class="fab fa-twitter"></a>
+				<a href="https://www.linkedin.com/company/premier-creative-gorup/?trk=prof-following-company-logo" target="_blank" class="fab fa-linkedin-in"></a>
+			</span>
+		</div>
+		<div class="footerColumn">
+				<ol id="Copyright">
+					<!-- Edit Footer Links -->
+					<li class="footerMenu"><a href="#" class="blueLink">Terms of Use</a></li>
+					<li class="footerMenu"><a href="#" class="blueLink">Privacy Policy</a></li>
+					<!-- END Footer Links -->
+				</ol>
+		</div>
+	</footer>
+<script>
+	function myFunction() {
+		  var x = document.getElementById("myTopnav");
+		  if (x.className === "menu") {
+			x.className += " responsive";
+		  } else {
+			x.className = "menu";
+		  }
+	} 
+</script>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="ETP Test Project - page 1">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ABOUT US</title>
+	<link href="AUstyle.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+	<link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
+</head>	
+</body>
+</html>
